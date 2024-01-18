@@ -1,8 +1,9 @@
 name: push-image
 
 on:
-  workflow_dispatch:
-    branches: [ main ]
+  push:
+    branches:
+      - main
 
 jobs:
   # setup:
