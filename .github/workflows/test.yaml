@@ -1,0 +1,31 @@
+name: push-image
+
+on:
+  workflow_dispatch:
+    branches: [ main ]
+
+jobs:
+  # setup:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     IMAGE_TAG: ${{ steps.tag.outputs.value }}
+  #     REF: ${{ steps.ref.outputs.value }}
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+  #     - name: Store git tag value to output
+  #       id: tag
+  #       run: echo "value=$(git describe --tags --always --abbrev=7)" >> $GITHUB_OUTPUT
+  #     - name: Store git ref value to output
+  #       id: ref
+  #       run: echo "value=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
+
+  dispatch:
+    # needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: shell
+        run: echo "${{ github.event.head_commit.message.split('\n')[0] }}" | head -n 1
+      - name: expressions
+        run: echo "${{ github.event.head_commit.message.split('\n')[0] }}"
