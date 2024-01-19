@@ -16,10 +16,10 @@ jobs:
           fetch-depth: 0
       - name: Store the first line of commit message
         id: commit_message
-        run: echo "value=hoge" >> $GITHUB_OUTPUT
+        run: echo "value=$(echo '${{ github.event.head_commit.message }}' | head -n 1)" >> $GITHUB_OUTPUT
 
   dispatch:
-    # needs: [setup]
+    needs: [setup]
     runs-on: ubuntu-latest
     steps:
       - name: shell
